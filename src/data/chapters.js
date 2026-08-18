@@ -11,10 +11,6 @@ export const chapters = [
         <li>예약이 끝나면 화면에 QR코드가 뜨고, 연결된 영수증(열전사) 프린터로 티켓이 자동 출력됩니다.</li>
         <li><code>/admin</code> 주소로 들어가는 별도의 관리자 페이지에서 상영 스케줄 관리, 방문 통계 확인, 예약 취소, 좌석 판매 금지 처리를 할 수 있습니다.</li>
       </ul>
-      <div class="callout">
-        <span class="callout-label">알아두기</span>
-        <p>결제 기능은 포함되어 있지 않습니다. 좌석을 고르고 확인을 누르면 바로 예약이 확정되는 방식입니다 (매표소에서 별도로 결제를 받는 운영 방식을 전제로 합니다).</p>
-      </div>
     `,
   },
   {
@@ -29,97 +25,26 @@ export const chapters = [
           <tbody>
             <tr><td><strong>키오스크용 PC</strong></td><td>Windows 또는 macOS. 터치스크린 또는 마우스로 조작 가능한 화면</td></tr>
             <tr><td><strong>브라우저</strong></td><td><strong>Chrome 또는 Edge 필수.</strong> 영수증 프린터 연결에 쓰이는 Web Serial 기능이 이 두 브라우저에만 있어 Safari·Firefox에서는 인쇄가 동작하지 않습니다.</td></tr>
-            <tr><td><strong>Node.js 18 이상</strong></td><td>설치 프로그램을 내려받아 실행하는 컴퓨터에 필요 (키오스크 자체에는 빌드 후 결과물만 올려도 됨)</td></tr>
-            <tr><td><strong>영수증(열전사) 프린터</strong></td><td>Epson 호환 모델, USB로 연결 시 시리얼 포트로 인식되는 제품, 통신속도 38400bps</td></tr>
-            <tr><td><strong>인터넷 연결</strong></td><td>좌석 실시간 동기화(Firebase)에 필요 — 끊기면 좌석 선택이 다른 기기와 동기화되지 않습니다</td></tr>
+            <tr><td><strong>인터넷 연결</strong></td><td>좌석 실시간 동기화에 필요 — 끊기면 좌석 선택이 다른 기기와 동기화되지 않습니다</td></tr>
+            <tr><td><strong>영수증 프린터</strong></td><td>예약 완료 후 </td></tr>
             <tr><td><strong>웹캠 (관리자용)</strong></td><td>예약 취소 시 QR코드를 스캔할 때 사용. 내장캠 또는 USB캠 모두 가능</td></tr>
-            <tr><td><strong>Firebase 계정</strong></td><td>구글 계정으로 무료(Spark) 요금제 사용 가능</td></tr>
           </tbody>
         </table>
       </div>
     `,
   },
   {
-    id: "install",
-    num: "Chapter 3",
-    title: "프로그램 설치",
-    intro:
-      "소스 코드를 내려받아 필요한 구성요소를 설치합니다. 터미널(명령 프롬프트)을 사용합니다.",
-    divider: true,
-    body: `
-      <ol class="steps">
-        <li><div><strong>프로젝트 폴더 받기</strong><span class="step-body">전달받은 zip 파일을 풀거나, git으로 저장소를 내려받아 원하는 폴더에 둡니다.</span></div></li>
-        <li><div><strong>터미널에서 폴더로 이동</strong><span class="step-body">아래 명령어의 경로 부분을 실제 폴더 위치로 바꿔 입력합니다.</span></div></li>
-        <li><div><strong>필요한 구성요소 설치</strong><span class="step-body">아래 명령어 한 줄이면 필요한 모든 라이브러리가 자동으로 설치됩니다. 인터넷 상태에 따라 1~5분 정도 걸립니다.</span></div></li>
-      </ol>
-      <pre><code>cd theather4DX
-npm install</code></pre>
-      <p class="code-caption">설치 도중 붉은 글씨(경고)가 조금 나와도 정상입니다. 빨간 <code>error</code>로 멈추지만 않으면 문제 없습니다.</p>
-    `,
-  },
-  {
-    id: "firebase",
-    num: "Chapter 4",
-    title: "Firebase 설정 (좌석 실시간 동기화)",
-    intro:
-      "여러 키오스크가 좌석 현황을 실시간으로 공유하려면 Google의 Firebase(Firestore) 데이터베이스가 필요합니다. 무료 요금제로 충분합니다.",
-    body: `
-      <ol class="steps">
-        <li><div><strong>Firebase 콘솔에서 새 프로젝트 만들기</strong><span class="step-body">구글 계정으로 Firebase 콘솔에 접속해 "프로젝트 추가"를 누르고 이름을 정합니다 (예: <code>4dx-kiosk</code>).</span></div></li>
-        <li><div><strong>Firestore Database 활성화</strong><span class="step-body">왼쪽 메뉴 Build → Firestore Database → "데이터베이스 만들기"를 눌러 생성합니다. 지역은 서울(asia-northeast3)을 권장합니다.</span></div></li>
-        <li><div><strong>웹 앱 등록 후 설정값 복사</strong><span class="step-body">프로젝트 설정(톱니바퀴) → 일반 → "내 앱" → 웹 아이콘(&lt;/&gt;)으로 앱을 등록하면 <code>apiKey</code>, <code>projectId</code> 등 설정값이 표시됩니다. 이 값을 5장에서 그대로 사용합니다.</span></div></li>
-        <li><div><strong>Firestore 보안 규칙 설정</strong><span class="step-body">키오스크는 로그인이 없는 구조라서, 아래 규칙처럼 <code>seatSessions</code>와 <code>config</code> 컬렉션에 한해 인증 없이 읽고 쓸 수 있도록 열어줘야 합니다. Firestore → 규칙 탭에서 붙여넣고 게시합니다.</span></div></li>
-        <li><div><strong>관리자 계정 만들기 (Authentication)</strong><span class="step-body">왼쪽 메뉴 Build → Authentication → "시작하기" → 로그인 방법에서 "이메일/비밀번호"를 사용 설정합니다. 이어서 Users 탭 → "사용자 추가"에서 관리자로 쓸 이메일과 비밀번호를 등록합니다. 이 이메일·비밀번호가 9장의 <code>/admin</code> 로그인 계정이 됩니다 (직원마다 계정을 따로 만들어도 됩니다).</span></div></li>
-      </ol>
-      <pre><code>match /seatSessions/{docId} {
-  allow read, write: if true;
-}
-match /config/{docId} {
-  allow read, write: if true;
-}</code></pre>
-      <div class="callout warning">
-        <span class="callout-label">보안 주의</span>
-        <p>이 규칙은 매장 키오스크 전용으로 만든 별도의 Firebase 프로젝트에만 적용하세요. 로그인 없이 누구나 값을 바꿀 수 있는 구조이므로, 회원 정보·결제 정보 등 민감한 데이터가 있는 프로젝트와는 절대 함께 쓰지 마세요.</p>
-      </div>
-      <p class="appendix-note"><code>config/schedule</code> 문서에 상영 스케줄이 저장됩니다. 문서가 아직 없으면 앱이 자동으로 기본 스케줄을 보여주고, 관리자 페이지에서 저장하는 순간 Firestore에 생성됩니다.</p>
-    `,
-  },
-  {
-    id: "env",
-    num: "Chapter 5",
-    title: "환경변수 설정",
-    intro:
-      "4장에서 복사한 Firebase 설정값을 .env.local 파일에 넣어줍니다. 이 파일은 프로젝트 폴더 맨 위(최상위)에 새로 만듭니다.",
-    body: `
-      <ol class="steps">
-        <li><div><strong><code>.env.example</code> 파일을 복사</strong><span class="step-body">같은 폴더에 <code>.env.local</code>이라는 이름으로 복사본을 만듭니다.</span></div></li>
-        <li><div><strong>Firebase 값 채워넣기</strong><span class="step-body">4장에서 복사해둔 6개 값을 <code>=</code> 뒤에 붙여넣습니다.</span></div></li>
-      </ol>
-      <pre><code>VITE_FIREBASE_API_KEY=여기에_붙여넣기
-VITE_FIREBASE_AUTH_DOMAIN=여기에_붙여넣기
-VITE_FIREBASE_PROJECT_ID=여기에_붙여넣기
-VITE_FIREBASE_STORAGE_BUCKET=여기에_붙여넣기
-VITE_FIREBASE_MESSAGING_SENDER_ID=여기에_붙여넣기
-VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
-      <div class="callout">
-        <span class="callout-label">참고</span>
-        <p>관리자 페이지 로그인 비밀번호는 이 파일이 아니라 4장에서 Firebase Authentication에 등록한 계정으로 관리됩니다. 계정을 추가·삭제하거나 비밀번호를 바꿀 때는 빌드를 다시 할 필요 없이 Firebase 콘솔에서 바로 반영됩니다.</p>
-      </div>
-    `,
-  },
-  {
     id: "run",
-    num: "Chapter 6",
-    title: "실행 및 배포",
+    num: "Chapter 3",
+    title: "키오스크 화면 열기",
+    intro:
+      "별도의 설치·실행 과정이 없습니다. 매장 PC의 브라우저(Chrome 또는 Edge)에서 안내받은 키오스크 주소로 접속하기만 하면 됩니다.",
     body: `
-      <h3>테스트로 실행해보기</h3>
-      <p>설정이 잘 됐는지 확인할 때는 개발 서버로 켜봅니다.</p>
-      <pre><code>npm run dev</code></pre>
-      <p class="code-caption">터미널에 표시되는 <code>http://localhost:5173</code> 같은 주소를 브라우저(Chrome/Edge)로 열면 됩니다.</p>
-      <h3>실제 매장에 올릴 결과물 만들기</h3>
-      <p>키오스크에 실제로 띄울 때는 아래 명령으로 최적화된 결과물을 만듭니다.</p>
-      <pre><code>npm run build</code></pre>
-      <p>실행하면 <code>dist</code>라는 폴더가 생기는데, 이 폴더 안의 파일들을 정적 웹서버(또는 사내 호스팅)에 올려 키오스크 브라우저가 그 주소로 접속하게 하면 됩니다.</p>
+      <ol class="steps">
+        <li><div><strong>브라우저 열기</strong><span class="step-body">키오스크용 PC에서 Chrome 또는 Edge를 실행합니다.</span></div></li>
+        <li><div><strong>안내받은 주소로 접속</strong><span class="step-body">담당자에게 전달받은 키오스크 주소를 주소창에 입력하고 접속하면 화면이 바로 뜹니다.</span></div></li>
+        <li><div><strong>관리자 페이지는 주소 뒤에 /admin</strong><span class="step-body">같은 주소 뒤에 <code>/admin</code>을 붙여 접속하면 관리자 페이지로 들어갈 수 있습니다 (7장 참고).</span></div></li>
+      </ol>
       <div class="callout good">
         <span class="callout-label">키오스크 화면으로 쓸 때 팁</span>
         <p>Chrome에서 <code>F11</code>(전체화면) 또는 키오스크 모드(<code>--kiosk</code> 실행 옵션)로 띄우면 주소창 없이 매장용 화면으로 사용할 수 있습니다.</p>
@@ -128,7 +53,7 @@ VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
   },
   {
     id: "printer",
-    num: "Chapter 7",
+    num: "Chapter 4",
     title: "영수증 프린터 연결",
     intro:
       "예약이 끝나면 좌석 정보와 QR코드가 담긴 영수증이 자동으로 출력됩니다. 처음 한 번만 아래 절차로 프린터를 연결하면 됩니다.",
@@ -157,8 +82,26 @@ VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
     `,
   },
   {
+    id: "webcam",
+    num: "Chapter 5",
+    title: "웹캠 연결",
+    intro:
+      "특정 예약을 취소하려면 영수증 속 정보가 담긴 QR코드를 웹캠에 읽어주실 시 취소됩니다. 아래 절차로 연결하면 됩니다.",
+    body: `
+      <ol class="steps">
+        <li><div><strong>내장캠 또는 USB캠을 PC에 연결</strong><span class="step-body">관리자 PC와 USB로 연결합니다. (내장캠 사용 시 연결할 필요 없습니다.)</span></div></li>
+        <li><div><strong>사용할 카메라 선택</strong><span class="step-body">관리자 페이지에 로그인해 예약취소 속 QR스캔 시, 브라우저가 "카메라 선택" 팝업을 띄웁니다.</span></div></li>
+        <li><div><strong>목록에서 카메라를 선택하고 연결</strong><span class="step-body">팝업 목록에 뜬 카메라를 선택하고 "연결"을 누릅니다.</span></div></li>
+      </ol>
+      <div class="callout good">
+        <span class="callout-label">이후에는 자동</span>
+        <p>한 번 허용하면 같은 브라우저·같은 기기에서는 다음 예약부터 팝업 없이 선택된 카메라로 연결됩니다. 브라우저 데이터(사이트 데이터)를 지우면 이 허용 정보도 사라져 다시 카메라를 선택해야 합니다.</p>
+      </div>
+    `,
+  },
+  {
     id: "kiosk-usage",
-    num: "Chapter 8",
+    num: "Chapter 6",
     title: "고객용 키오스크 사용법",
     intro:
       "고객이 실제로 화면 앞에서 겪는 순서입니다. 매장 안내 시 참고하세요.",
@@ -186,10 +129,10 @@ VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
   },
   {
     id: "admin-usage",
-    num: "Chapter 9",
+    num: "Chapter 7",
     title: "관리자 페이지 사용법",
     intro:
-      "브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 4장에서 Firebase Authentication에 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 4개 탭이 나타납니다.",
+      "브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 4개 탭이 나타납니다.",
     body: `
       <div class="card-grid">
         <div class="card">
@@ -235,7 +178,7 @@ VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
   },
   {
     id: "troubleshoot",
-    num: "Chapter 10",
+    num: "Chapter 8",
     title: "문제 해결",
     divider: true,
     body: `
@@ -244,36 +187,34 @@ VITE_FIREBASE_APP_ID=여기에_붙여넣기</code></pre>
           <thead><tr><th style="width:34%">증상</th><th>해결 방법</th></tr></thead>
           <tbody>
             <tr><td>영수증이 인쇄되지 않아요</td><td>① Chrome 또는 Edge를 쓰고 있는지 확인 ② 프린터 USB 케이블·전원 확인 ③ 7장의 "포트 선택" 절차를 다시 진행 (브라우저 주소창 왼쪽 자물쇠 아이콘 → 사이트 설정에서 시리얼 포트 권한 확인)</td></tr>
-            <tr><td>관리자 비밀번호를 잊어버렸어요</td><td>Firebase 콘솔 → Authentication → Users 탭에서 해당 계정을 찾아 "비밀번호 재설정" 메일을 보내거나, 계정을 삭제한 뒤 새 이메일·비밀번호로 다시 등록하세요. 빌드를 다시 할 필요는 없습니다.</td></tr>
             <tr><td>좌석이 "다른 창에서 선택 중"으로 계속 떠요</td><td>다른 손님이 2분 이내에 같은 좌석을 선택 중인 상태입니다. 2분 뒤 자동으로 풀리거나, 급하면 관리자 "좌석 금지" 탭에서 상태를 확인하세요.</td></tr>
-            <tr><td>스케줄을 수정했는데 키오스크에 안 보여요</td><td>인터넷 연결과 5장의 Firebase 환경변수 값이 정확한지 확인하세요. 화면은 30초마다 자동 새로고침됩니다.</td></tr>
             <tr><td>QR 스캔 창이 안 열려요</td><td>브라우저의 카메라 권한이 차단되어 있는지 확인하세요. 주소창 왼쪽 아이콘 → 카메라 권한을 "허용"으로 변경 후 새로고침합니다.</td></tr>
           </tbody>
         </table>
       </div>
     `,
   },
-  {
-    id: "appendix",
-    num: "Appendix",
-    title: "환경변수 전체 목록",
-    intro: ".env.local 파일에 들어가는 값 전체 정리입니다.",
-    body: `
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>변수명</th><th>설명</th></tr></thead>
-          <tbody>
-            <tr><td class="mono">VITE_FIREBASE_API_KEY</td><td>Firebase 프로젝트 API 키</td></tr>
-            <tr><td class="mono">VITE_FIREBASE_AUTH_DOMAIN</td><td>Firebase 인증 도메인</td></tr>
-            <tr><td class="mono">VITE_FIREBASE_PROJECT_ID</td><td>Firebase 프로젝트 ID</td></tr>
-            <tr><td class="mono">VITE_FIREBASE_STORAGE_BUCKET</td><td>Firebase 스토리지 버킷 주소</td></tr>
-            <tr><td class="mono">VITE_FIREBASE_MESSAGING_SENDER_ID</td><td>Firebase 메시징 발신자 ID</td></tr>
-            <tr><td class="mono">VITE_FIREBASE_APP_ID</td><td>Firebase 웹 앱 ID</td></tr>
-          </tbody>
-        </table>
-      </div>
-    `,
-  },
+  // {
+  //   id: "appendix",
+  //   num: "Appendix",
+  //   title: "환경변수 전체 목록",
+  //   intro: ".env.local 파일에 들어가는 값 전체 정리입니다.",
+  //   body: `
+  //     <div class="table-wrap">
+  //       <table>
+  //         <thead><tr><th>변수명</th><th>설명</th></tr></thead>
+  //         <tbody>
+  //           <tr><td class="mono">VITE_FIREBASE_API_KEY</td><td>Firebase 프로젝트 API 키</td></tr>
+  //           <tr><td class="mono">VITE_FIREBASE_AUTH_DOMAIN</td><td>Firebase 인증 도메인</td></tr>
+  //           <tr><td class="mono">VITE_FIREBASE_PROJECT_ID</td><td>Firebase 프로젝트 ID</td></tr>
+  //           <tr><td class="mono">VITE_FIREBASE_STORAGE_BUCKET</td><td>Firebase 스토리지 버킷 주소</td></tr>
+  //           <tr><td class="mono">VITE_FIREBASE_MESSAGING_SENDER_ID</td><td>Firebase 메시징 발신자 ID</td></tr>
+  //           <tr><td class="mono">VITE_FIREBASE_APP_ID</td><td>Firebase 웹 앱 ID</td></tr>
+  //         </tbody>
+  //       </table>
+  //     </div>
+  //   `,
+  // },
 ];
 
 export const tocGroups = [
@@ -287,25 +228,26 @@ export const tocGroups = [
   {
     label: "설치 & 설정",
     items: [
-      { id: "install", label: "3. 프로그램 설치" },
-      { id: "firebase", label: "4. Firebase 설정" },
-      { id: "env", label: "5. 환경변수 설정" },
-      { id: "run", label: "6. 실행 및 배포" },
-      { id: "printer", label: "7. 영수증 프린터 연결" },
+      // { id: "install", label: "3. 프로그램 설치" },
+      // { id: "firebase", label: "4. Firebase 설정" },
+      // { id: "env", label: "5. 환경변수 설정" },
+      { id: "run", label: "3. 키오스크 화면 열기" },
+      { id: "printer", label: "4. 영수증 프린터 연결" },
+      { id: "webcam", label: "5. 웹캠 연결" },
     ],
   },
   {
     label: "사용법",
     items: [
-      { id: "kiosk-usage", label: "8. 고객용 키오스크 화면" },
-      { id: "admin-usage", label: "9. 관리자 페이지" },
+      { id: "kiosk-usage", label: "6. 고객용 키오스크 화면" },
+      { id: "admin-usage", label: "7. 관리자 페이지" },
     ],
   },
   {
     label: "참고",
     items: [
-      { id: "troubleshoot", label: "10. 문제 해결" },
-      { id: "appendix", label: "부록 · 환경변수 표" },
+      { id: "troubleshoot", label: "8. 문제 해결" },
+      // { id: "appendix", label: "부록 · 환경변수 표" },
     ],
   },
 ];
