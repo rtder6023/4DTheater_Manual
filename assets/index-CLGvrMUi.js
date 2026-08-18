@@ -25,11 +25,11 @@
         <table>
           <thead><tr><th>항목</th><th>필요한 이유 / 조건</th></tr></thead>
           <tbody>
-            <tr><td><strong>키오스크용 PC</strong></td><td>Windows 또는 macOS. 터치스크린 또는 마우스로 조작 가능한 화면</td></tr>
+            <tr><td style="white-space: nowrap;"><strong>키오스크용 PC</strong></td><td>Windows 또는 macOS. 터치스크린 또는 마우스로 조작 가능한 화면</td></tr>
             <tr><td><strong>브라우저</strong></td><td><strong>Chrome 또는 Edge 필수.</strong> 영수증 프린터 연결에 쓰이는 Web Serial 기능이 이 두 브라우저에만 있어 Safari·Firefox에서는 인쇄가 동작하지 않습니다.</td></tr>
             <tr><td><strong>인터넷 연결</strong></td><td>좌석 실시간 동기화에 필요 — 끊기면 좌석 선택이 다른 기기와 동기화되지 않습니다</td></tr>
-            <tr><td><strong>영수증 프린터</strong></td><td>예약 완료 후 </td></tr>
-            <tr><td><strong>웹캠 (관리자용)</strong></td><td>예약 취소 시 QR코드를 스캔할 때 사용. 내장캠 또는 USB캠 모두 가능</td></tr>
+            <tr><td><strong>영수증 프린터</strong></td><td>예약이 완료되었을 때 예약 정보를 영수증으로 출력하기 위해 필요합니다.</td></tr>
+            <tr><td style="white-space: nowrap;"><strong>웹캠 (관리자용)</strong></td><td>예약 취소 시 QR코드를 스캔할 때 사용. 내장캠 또는 USB캠 모두 가능</td></tr>
           </tbody>
         </table>
       </div>
