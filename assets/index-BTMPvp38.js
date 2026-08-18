@@ -92,7 +92,7 @@
       </div>
       <div class="callout">
         <span class="callout-label">QR코드에 담긴 정보</span>
-        <p>영수증의 QR코드는 <strong>예약일자 + 회차 + 좌석 + 인원수</strong>를 담고 있습니다. 고객이 직접 취소하는 기능은 없고, 이 QR코드는 매장 직원이 관리자 페이지에서 스캔해 취소할 때 사용합니다 (9장 참고).</p>
+        <p>영수증의 QR코드는 <strong>예약일자 + 회차 + 좌석 + 인원수</strong>를 담고 있습니다. 고객이 직접 취소하는 기능은 없고, 이 QR코드는 매장 직원이 관리자 페이지에서 스캔해 취소할 때 사용합니다 (7장 참고).</p>
       </div>
     `},{id:"admin-usage",num:"Chapter 7",title:"관리자 페이지 사용법",intro:"브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 4개 탭이 나타납니다.",body:`
       <div class="card-grid">
