@@ -12,7 +12,8 @@ let observer = null;
 function updateProgress() {
   const scrollTop = window.scrollY;
   const max = document.documentElement.scrollHeight - window.innerHeight;
-  progress.value = max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0;
+  progress.value =
+    max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0;
 }
 
 onMounted(() => {
@@ -25,7 +26,7 @@ onMounted(() => {
           }
         });
       },
-      { rootMargin: "-15% 0px -70% 0px", threshold: 0 }
+      { rootMargin: "-15% 0px -70% 0px", threshold: 0 },
     );
     chapters.forEach((ch) => {
       const el = document.getElementById(ch.id);
@@ -65,10 +66,11 @@ onBeforeUnmount(() => {
     <main>
       <header class="doc-header">
         <div class="doc-kicker">4DX Theater Kiosk System</div>
-        <h1>4DX 영화관 키오스크 설치 매뉴얼</h1>
+        <h1>독립기념관 키오스크 설치 매뉴얼</h1>
         <p>
-          이 문서만 보고 무인 예매 키오스크의 설치부터 영수증 프린터 연결, 매장 운영(관리자 페이지) 까지
-          전부 진행할 수 있도록 순서대로 정리했습니다. 기술 지식이 없어도 따라 하실 수 있습니다.
+          이 문서만 보고 무인 예매 키오스크의 설치부터 영수증 프린터 연결,
+          운영(관리자 페이지) 까지 전부 진행할 수 있도록 순서대로 정리했습니다.
+          기술 지식이 없어도 따라 하실 수 있습니다.
         </p>
       </header>
 
