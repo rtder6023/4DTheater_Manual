@@ -68,7 +68,7 @@
     `},{id:"scan",num:"Chapter 5",title:"QR 취소",intro:"특정 예약을 취소하려면 영수증 속 정보가 담긴 QR코드를 스캐너에 읽어주실 시 취소됩니다. 아래 절차로 연결하면 됩니다.",body:`
       <ol class="steps">
         <li><div><strong>2D 스캐너를 PC에 연결</strong><span class="step-body">관리자 PC와 USB로 연결합니다.</span></div></li>
-        <li><div><strong>스캐너를 통해 QR 취소</strong><span class="step-body">관리자 페이지에 로그인해 예약 취소 속 QR 스캔 클릭 후 취소할 예약의 QR을 스캐너에 읽어 취소합니다.</span></div></li>
+        <li><div><strong>스캐너를 통해 QR 취소</strong><span class="step-body">관리자 페이지에 로그인해 예약 취소 속 QR 스캔 클릭 후 취소할 예약의 QR코드를 스캐너로 스캔하여 예약을 취소합니다.</span></div></li>
       </ol>
     `},{id:"kiosk-usage",num:"Chapter 6",title:"고객용 키오스크 사용법",intro:"고객이 실제로 화면 앞에서 겪는 순서입니다. 매장 안내 시 참고하세요.",divider:!0,body:`
       <ol class="steps">
