@@ -4,11 +4,11 @@ export const chapters = [
     num: "Chapter 1",
     title: "시스템 개요",
     intro:
-      "4DX 키오스크는 별도의 회원가입·로그인 없이, 고객이 화면 앞에 서서 상영 시간표를 확인하고 좌석을 선택해 즉시 예약·출력까지 마치는 무인 발권 시스템입니다.",
+      "4DX 키오스크는 별도의 회원가입·로그인 없이, 고객이 화면 앞에 서서 상영 시간표를 확인하고 좌석을 선택해 즉시 예약·출력까지 마치는 발권 시스템입니다.",
     body: `
       <ul>
         <li>여러 대의 키오스크를 매장에 동시에 설치해도, 좌석 현황이 실시간으로 서로 공유됩니다 (한 대에서 좌석을 고르면 다른 기기에서 즉시 회색으로 비활성화).</li>
-        <li>예약이 끝나면 화면에 QR코드가 뜨고, 연결된 영수증(열전사) 프린터로 티켓이 자동 출력됩니다.</li>
+        <li>예약이 끝나면 연결된 영수증 프린터로 티켓이 자동 출력됩니다.</li>
         <li><code>/admin</code> 주소로 들어가는 별도의 관리자 페이지에서 상영 스케줄 관리, 방문 통계 확인, 예약 취소, 좌석 판매 금지 처리를 할 수 있습니다.</li>
       </ul>
     `,
@@ -23,11 +23,11 @@ export const chapters = [
         <table>
           <thead><tr><th>항목</th><th>필요한 이유 / 조건</th></tr></thead>
           <tbody>
-            <tr><td><strong>키오스크용 PC</strong></td><td>Windows 또는 macOS. 터치스크린 또는 마우스로 조작 가능한 화면</td></tr>
+            <tr><td style="white-space: nowrap;"><strong>키오스크용 PC</strong></td><td>Windows 또는 macOS. 터치스크린 또는 마우스로 조작 가능한 화면</td></tr>
             <tr><td><strong>브라우저</strong></td><td><strong>Chrome 또는 Edge 필수.</strong> 영수증 프린터 연결에 쓰이는 Web Serial 기능이 이 두 브라우저에만 있어 Safari·Firefox에서는 인쇄가 동작하지 않습니다.</td></tr>
             <tr><td><strong>인터넷 연결</strong></td><td>좌석 실시간 동기화에 필요 — 끊기면 좌석 선택이 다른 기기와 동기화되지 않습니다</td></tr>
-            <tr><td><strong>영수증 프린터</strong></td><td>예약 완료 후 </td></tr>
-            <tr><td><strong>웹캠 (관리자용)</strong></td><td>예약 취소 시 QR코드를 스캔할 때 사용. 내장캠 또는 USB캠 모두 가능</td></tr>
+            <tr><td><strong>영수증 프린터</strong></td><td>예약이 완료되었을 때 예약 정보를 영수증으로 출력하기 위해 필요합니다.</td></tr>
+            <tr><td style="white-space: nowrap;"><strong>2D 스캐너 (관리자용)</strong></td><td>예약 취소를 위해 QR코드를 스캔할 때 필요합니다.</td></tr>
           </tbody>
         </table>
       </div>
@@ -38,11 +38,11 @@ export const chapters = [
     num: "Chapter 3",
     title: "키오스크 화면 열기",
     intro:
-      "별도의 설치·실행 과정이 없습니다. 매장 PC의 브라우저(Chrome 또는 Edge)에서 안내받은 키오스크 주소로 접속하기만 하면 됩니다.",
+      "별도의 설치·실행 과정이 없습니다. 매장 PC의 브라우저(Chrome 또는 Edge)에서 키오스크 주소로 접속하기만 하면 됩니다.",
     body: `
       <ol class="steps">
         <li><div><strong>브라우저 열기</strong><span class="step-body">키오스크용 PC에서 Chrome 또는 Edge를 실행합니다.</span></div></li>
-        <li><div><strong>안내받은 주소로 접속</strong><span class="step-body">담당자에게 전달받은 키오스크 주소를 주소창에 입력하고 접속하면 화면이 바로 뜹니다.</span></div></li>
+        <li><div><strong>안내받은 주소로 접속</strong><span class="step-body"><code>https://theather4-dx.vercel.app</code>를 주소창에 입력하고 접속하면 화면이 바로 뜹니다.</span></div></li>
         <li><div><strong>관리자 페이지는 주소 뒤에 /admin</strong><span class="step-body">같은 주소 뒤에 <code>/admin</code>을 붙여 접속하면 관리자 페이지로 들어갈 수 있습니다 (7장 참고).</span></div></li>
       </ol>
       <div class="callout good">
@@ -82,21 +82,16 @@ export const chapters = [
     `,
   },
   {
-    id: "webcam",
+    id: "scan",
     num: "Chapter 5",
-    title: "웹캠 연결",
+    title: "QR 취소",
     intro:
-      "특정 예약을 취소하려면 영수증 속 정보가 담긴 QR코드를 웹캠에 읽어주실 시 취소됩니다. 아래 절차로 연결하면 됩니다.",
+      "특정 예약을 취소하려면 영수증 속 정보가 담긴 QR코드를 스캐너에 읽어주실 시 취소됩니다. 아래 절차로 연결하면 됩니다.",
     body: `
       <ol class="steps">
-        <li><div><strong>내장캠 또는 USB캠을 PC에 연결</strong><span class="step-body">관리자 PC와 USB로 연결합니다. (내장캠 사용 시 연결할 필요 없습니다.)</span></div></li>
-        <li><div><strong>사용할 카메라 선택</strong><span class="step-body">관리자 페이지에 로그인해 예약취소 속 QR스캔 시, 브라우저가 "카메라 선택" 팝업을 띄웁니다.</span></div></li>
-        <li><div><strong>목록에서 카메라를 선택하고 연결</strong><span class="step-body">팝업 목록에 뜬 카메라를 선택하고 "연결"을 누릅니다.</span></div></li>
+        <li><div><strong>2D 스캐너를 PC에 연결</strong><span class="step-body">관리자 PC와 USB로 연결합니다.</span></div></li>
+        <li><div><strong>스캐너를 통해 QR 취소</strong><span class="step-body">관리자 페이지의 예약 취소 속 QR 스캔 클릭 후 취소할 예약의 QR코드를 스캐너로 스캔해 예약을 취소합니다.</span></div></li>
       </ol>
-      <div class="callout good">
-        <span class="callout-label">이후에는 자동</span>
-        <p>한 번 허용하면 같은 브라우저·같은 기기에서는 다음 예약부터 팝업 없이 선택된 카메라로 연결됩니다. 브라우저 데이터(사이트 데이터)를 지우면 이 허용 정보도 사라져 다시 카메라를 선택해야 합니다.</p>
-      </div>
     `,
   },
   {
@@ -123,7 +118,7 @@ export const chapters = [
       </div>
       <div class="callout">
         <span class="callout-label">QR코드에 담긴 정보</span>
-        <p>영수증의 QR코드는 <strong>예약일자 + 회차 + 좌석 + 인원수</strong>를 담고 있습니다. 고객이 직접 취소하는 기능은 없고, 이 QR코드는 매장 직원이 관리자 페이지에서 스캔해 취소할 때 사용합니다 (9장 참고).</p>
+        <p>영수증의 QR코드는 <strong>예약일자 + 회차 + 좌석 + 인원수</strong>를 담고 있습니다. 고객이 직접 취소하는 기능은 없고, 이 QR코드는 매장 직원이 관리자 페이지에서 스캔해 취소할 때 사용합니다 (7장 참고).</p>
       </div>
     `,
   },
@@ -132,7 +127,7 @@ export const chapters = [
     num: "Chapter 7",
     title: "관리자 페이지 사용법",
     intro:
-      "브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 4개 탭이 나타납니다.",
+      "브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 5개 탭이 나타납니다.",
     body: `
       <div class="card-grid">
         <div class="card">
@@ -159,7 +154,7 @@ export const chapters = [
             <li>예약이 있는 세션(회차)별 목록과 좌석 확인</li>
             <li>좌석 칩의 ✕ 버튼으로 개별 취소</li>
             <li>"전체 취소"로 해당 회차 일괄 취소</li>
-            <li><strong>"QR 스캔"</strong>으로 손님 영수증 QR코드를 카메라로 읽어 즉시 취소</li>
+            <li><strong>"QR 스캔"</strong>으로 손님 영수증 QR코드를 스캐너로 읽어 즉시 취소</li>
           </ul>
         </div>
         <div class="card">
@@ -172,9 +167,22 @@ export const chapters = [
           </ul>
         </div>
       </div>
+      <div class="card_print">
+          <div class="card-title">출력 형식 <span class="card-tag">PRINT TYPE</span></div>
+          <ul>
+            <li>표 출력 방식 선택</li>
+            <li>출력 방식 1: 여러 예약 건을 하나의 표로 출력</li>
+            <li>출력 방식 2: 예약 건별로 표를 각각 출력</li>
+          </ul>
+        </div>
       <h3>로그인 유지 &amp; 로그아웃</h3>
       <p>관리자 로그인은 브라우저 탭을 열어둔 동안만 유지됩니다(세션 저장). 브라우저를 완전히 닫으면 다음 접속 시 비밀번호를 다시 입력해야 합니다. 왼쪽 하단의 "로그아웃" 버튼으로 언제든 즉시 로그아웃할 수 있습니다.</p>
-    `,
+      <div class="callout good">
+        <span class="callout-label">테스트 계정 정보</span>
+        <p>계정 ID는 admin <br />비밀번호는 ehrdlqrlsuarhks입니다.</p>
+      </div>
+    
+      `,
   },
   {
     id: "troubleshoot",
@@ -186,9 +194,8 @@ export const chapters = [
         <table>
           <thead><tr><th style="width:34%">증상</th><th>해결 방법</th></tr></thead>
           <tbody>
-            <tr><td>영수증이 인쇄되지 않아요</td><td>① Chrome 또는 Edge를 쓰고 있는지 확인 ② 프린터 USB 케이블·전원 확인 ③ 7장의 "포트 선택" 절차를 다시 진행 (브라우저 주소창 왼쪽 자물쇠 아이콘 → 사이트 설정에서 시리얼 포트 권한 확인)</td></tr>
+            <tr><td>영수증이 인쇄되지 않아요</td><td>① Chrome 또는 Edge를 쓰고 있는지 확인 ② 프린터 USB 케이블·전원 확인 ③ 4장의 "포트 선택" 절차를 다시 진행 (브라우저 주소창 왼쪽 자물쇠 아이콘 → 사이트 설정에서 시리얼 포트 권한 확인)</td></tr>
             <tr><td>좌석이 "다른 창에서 선택 중"으로 계속 떠요</td><td>다른 손님이 2분 이내에 같은 좌석을 선택 중인 상태입니다. 2분 뒤 자동으로 풀리거나, 급하면 관리자 "좌석 금지" 탭에서 상태를 확인하세요.</td></tr>
-            <tr><td>QR 스캔 창이 안 열려요</td><td>브라우저의 카메라 권한이 차단되어 있는지 확인하세요. 주소창 왼쪽 아이콘 → 카메라 권한을 "허용"으로 변경 후 새로고침합니다.</td></tr>
           </tbody>
         </table>
       </div>
@@ -210,6 +217,7 @@ export const chapters = [
   //           <tr><td class="mono">VITE_FIREBASE_STORAGE_BUCKET</td><td>Firebase 스토리지 버킷 주소</td></tr>
   //           <tr><td class="mono">VITE_FIREBASE_MESSAGING_SENDER_ID</td><td>Firebase 메시징 발신자 ID</td></tr>
   //           <tr><td class="mono">VITE_FIREBASE_APP_ID</td><td>Firebase 웹 앱 ID</td></tr>
+
   //         </tbody>
   //       </table>
   //     </div>
@@ -233,7 +241,7 @@ export const tocGroups = [
       // { id: "env", label: "5. 환경변수 설정" },
       { id: "run", label: "3. 키오스크 화면 열기" },
       { id: "printer", label: "4. 영수증 프린터 연결" },
-      { id: "webcam", label: "5. 웹캠 연결" },
+      { id: "scan", label: "5. QR 취소" },
     ],
   },
   {
