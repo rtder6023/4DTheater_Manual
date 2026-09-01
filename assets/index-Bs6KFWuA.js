@@ -33,10 +33,10 @@
           </tbody>
         </table>
       </div>
-    `},{id:"run",num:"Chapter 3",title:"키오스크 화면 열기",intro:"별도의 설치·실행 과정이 없습니다. 매장 PC의 브라우저(Chrome 또는 Edge)에서 안내받은 키오스크 주소로 접속하기만 하면 됩니다.",body:`
+    `},{id:"run",num:"Chapter 3",title:"키오스크 화면 열기",intro:"별도의 설치·실행 과정이 없습니다. 매장 PC의 브라우저(Chrome 또는 Edge)에서 키오스크 주소로 접속하기만 하면 됩니다.",body:`
       <ol class="steps">
         <li><div><strong>브라우저 열기</strong><span class="step-body">키오스크용 PC에서 Chrome 또는 Edge를 실행합니다.</span></div></li>
-        <li><div><strong>안내받은 주소로 접속</strong><span class="step-body">담당자에게 전달받은 키오스크 주소를 주소창에 입력하고 접속하면 화면이 바로 뜹니다.</span></div></li>
+        <li><div><strong>안내받은 주소로 접속</strong><span class="step-body"><code>https://theather4-dx.vercel.app</code>를 주소창에 입력하고 접속하면 화면이 바로 뜹니다.</span></div></li>
         <li><div><strong>관리자 페이지는 주소 뒤에 /admin</strong><span class="step-body">같은 주소 뒤에 <code>/admin</code>을 붙여 접속하면 관리자 페이지로 들어갈 수 있습니다 (7장 참고).</span></div></li>
       </ol>
       <div class="callout good">
@@ -89,7 +89,7 @@
         <span class="callout-label">QR코드에 담긴 정보</span>
         <p>영수증의 QR코드는 <strong>예약일자 + 회차 + 좌석 + 인원수</strong>를 담고 있습니다. 고객이 직접 취소하는 기능은 없고, 이 QR코드는 매장 직원이 관리자 페이지에서 스캔해 취소할 때 사용합니다 (7장 참고).</p>
       </div>
-    `},{id:"admin-usage",num:"Chapter 7",title:"관리자 페이지 사용법",intro:"브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 4개 탭이 나타납니다.",body:`
+    `},{id:"admin-usage",num:"Chapter 7",title:"관리자 페이지 사용법",intro:"브라우저에서 키오스크 주소 뒤에 /admin을 붙여 접속합니다. 등록한 관리자 이메일과 비밀번호로 로그인하면 아래 5개 탭이 나타납니다.",body:`
       <div class="card-grid">
         <div class="card">
           <div class="card-title">스케줄 관리 <span class="card-tag">SCHEDULE</span></div>
@@ -138,7 +138,12 @@
         </div>
       <h3>로그인 유지 &amp; 로그아웃</h3>
       <p>관리자 로그인은 브라우저 탭을 열어둔 동안만 유지됩니다(세션 저장). 브라우저를 완전히 닫으면 다음 접속 시 비밀번호를 다시 입력해야 합니다. 왼쪽 하단의 "로그아웃" 버튼으로 언제든 즉시 로그아웃할 수 있습니다.</p>
-    `},{id:"troubleshoot",num:"Chapter 8",title:"문제 해결",divider:!0,body:`
+      <div class="callout good">
+        <span class="callout-label">테스트 계정 정보</span>
+        <p>계정 ID는 admin <br />비밀번호는 ehrdlqrlsuarhks입니다.</p>
+      </div>
+    
+      `},{id:"troubleshoot",num:"Chapter 8",title:"문제 해결",divider:!0,body:`
       <div class="table-wrap">
         <table>
           <thead><tr><th style="width:34%">증상</th><th>해결 방법</th></tr></thead>
