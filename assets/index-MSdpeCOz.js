@@ -74,7 +74,7 @@
       <ol class="steps">
         <li><div><strong>홈 화면</strong><span class="step-body">현재 시각이 표시되고, "START" 버튼을 누르면 시작됩니다.</span></div></li>
         <li><div><strong>상영 시간표 선택</strong><span class="step-body"><strong>오늘 상영하는 회차만</strong> 목록에 나타나며 30초마다 자동 새로고침됩니다. 이미 지난 회차는 흐리게 표시되어 선택할 수 없습니다.</span></div></li>
-        <li><div><strong>좌석 선택</strong><span class="step-body">총 92석(A~F열)이 표시됩니다. 좌석을 누르면 <strong>2분간</strong> 임시로 배정(hold)되어 다른 키오스크에서는 "다른 창에서 선택 중"으로 비활성화됩니다. 2분 안에 예약을 마치지 않으면 자동으로 풀립니다.</span></div></li>
+        <li><div><strong>좌석 선택</strong><span class="step-body">총 92석(A~F열)이 표시됩니다. 좌석을 누르면 <strong>45초간</strong> 임시로 배정(hold)되어 다른 키오스크에서는 "다른 창에서 선택 중"으로 비활성화됩니다. 45초 안에 예약을 마치지 않으면 자동으로 풀립니다.</span></div></li>
         <li><div><strong>예약 확인</strong><span class="step-body">선택한 좌석 목록을 다시 보여주는 팝업에서 "확인"을 누르면 예약이 즉시 확정됩니다. 그 사이 다른 손님이 같은 좌석을 먼저 예약했다면 해당 좌석만 빠지고 안내 메시지가 뜹니다.</span></div></li>
         <li><div><strong>완료 &amp; 영수증 출력</strong><span class="step-body">예약 완료 화면에 QR코드가 뜨고, 연결된 프린터로 영수증이 자동 출력됩니다(1회만). "처음으로"를 누르면 다음 손님을 위해 초기화됩니다.</span></div></li>
       </ol>
@@ -149,7 +149,7 @@
           <thead><tr><th style="width:34%">증상</th><th>해결 방법</th></tr></thead>
           <tbody>
             <tr><td>영수증이 인쇄되지 않아요</td><td>① Chrome 또는 Edge를 쓰고 있는지 확인 ② 프린터 USB 케이블·전원 확인 ③ 4장의 "포트 선택" 절차를 다시 진행 (브라우저 주소창 왼쪽 자물쇠 아이콘 → 사이트 설정에서 시리얼 포트 권한 확인)</td></tr>
-            <tr><td>좌석이 "다른 창에서 선택 중"으로 계속 떠요</td><td>다른 손님이 2분 이내에 같은 좌석을 선택 중인 상태입니다. 2분 뒤 자동으로 풀리거나, 급하면 관리자 "좌석 금지" 탭에서 상태를 확인하세요.</td></tr>
+            <tr><td>좌석이 "다른 창에서 선택 중"으로 계속 떠요</td><td>다른 손님이 45초 이내에 같은 좌석을 선택 중인 상태입니다. 45초 뒤 자동으로 풀리거나, 급하면 관리자 "좌석 금지" 탭에서 상태를 확인하세요.</td></tr>
           </tbody>
         </table>
       </div>
