@@ -140,7 +140,7 @@
       <p>관리자 로그인은 브라우저 탭을 열어둔 동안만 유지됩니다(세션 저장). 브라우저를 완전히 닫으면 다음 접속 시 비밀번호를 다시 입력해야 합니다. 왼쪽 하단의 "로그아웃" 버튼으로 언제든 즉시 로그아웃할 수 있습니다.</p>
       <div class="callout good">
         <span class="callout-label">테스트 계정 정보</span>
-        <p>계정 ID는 admin <br />비밀번호는 ehrdlqrlsuarhks입니다.</p>
+        <p>계정 ID는 admin <br />비밀번호는 ehrflqrlsuarhks입니다.</p>
       </div>
     
       `},{id:"troubleshoot",num:"Chapter 8",title:"문제 해결",divider:!0,body:`
